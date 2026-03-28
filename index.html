@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Us – Fun Mode 😄</title>
+  <title>US 😄❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -33,58 +33,96 @@
       border-radius: 10px;
     }
 
-    button {
-      margin-top: 10px;
+    .secret {
+      color: #121212;
+      background: #121212;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
     }
+
+    .revealed {
+      color: white;
+      background: #333;
+    }
+
   </style>
 </head>
 
 <body>
 
-<h1>😄 Fun Mode 😄</h1>
-<div>Select a game</div>
+<h1>😄❤️ US Mode ❤️😄</h1>
 
 <div class="menu">
-  <button onclick="showGame('draw')">✏️ Draw & Guess</button>
-  <button onclick="showGame('act')">🎭 Act & Guess</button>
-  <button onclick="showGame('rapid')">⚡ Rapid Fire</button>
-  <button onclick="showGame('challenge')">🎲 Random Challenge</button>
+  <button onclick="showGame('draw')">✏️ Draw</button>
+  <button onclick="showGame('rapid')">⚡ Rapid</button>
+  <button onclick="showGame('fun')">😄 Fun</button>
+  <button onclick="showGame('romantic')">❤️ Romantic</button>
+  <button onclick="showGame('deep')">🤫 Deep</button>
 </div>
 
-<!-- DRAW GAME -->
+<!-- DRAW -->
 <div id="draw" class="game">
   <h3>Draw & Guess</h3>
+  <div id="word" class="secret" onclick="reveal()">Tap to reveal word</div>
+  <br><br>
   <canvas id="canvas" width="300" height="300"></canvas><br>
   <button onclick="clearCanvas()">Clear</button>
+  <button onclick="newWord()">New Word</button>
 </div>
 
-<!-- ACT GAME -->
-<div id="act" class="game">
-  <h3>Act & Guess</h3>
-  <div id="actWord">Click below</div>
-  <button onclick="newAct()">New Word</button>
-</div>
-
-<!-- RAPID FIRE -->
+<!-- RAPID -->
 <div id="rapid" class="game">
   <h3>Rapid Fire</h3>
   <div id="rapidQ">Click below</div>
   <button onclick="newRapid()">Next</button>
 </div>
 
-<!-- CHALLENGE -->
-<div id="challenge" class="game">
-  <h3>Random Challenge</h3>
-  <div id="challengeText">Click below</div>
-  <button onclick="newChallenge()">Next</button>
+<!-- FUN -->
+<div id="fun" class="game">
+  <h3>Fun Tasks</h3>
+  <div id="funQ">Click below</div>
+  <button onclick="newFun()">Next</button>
+</div>
+
+<!-- ROMANTIC -->
+<div id="romantic" class="game">
+  <h3>Romantic</h3>
+  <div id="romanticQ">Click below</div>
+  <button onclick="newRomantic()">Next</button>
+</div>
+
+<!-- DEEP -->
+<div id="deep" class="game">
+  <h3>Deep</h3>
+  <div id="deepQ">Click below</div>
+  <button onclick="newDeep()">Next</button>
 </div>
 
 <script>
 
-// SWITCH GAME
+// SWITCH
 function showGame(id) {
   document.querySelectorAll('.game').forEach(g => g.style.display = 'none');
   document.getElementById(id).style.display = 'block';
+}
+
+// DRAW WORDS
+const words = [
+  "Pizza","Dog","Cricket","Train","Teacher","Mobile","Rain","Mountain",
+  "Car","Chocolate","Movie","Beach","Laptop","Friend","Exam","Sun",
+  "Phone","Ice Cream","Football","Book","Coffee","City","Music","Camera"
+];
+
+function newWord() {
+  let w = words[Math.floor(Math.random() * words.length)];
+  let el = document.getElementById("word");
+  el.innerText = w;
+  el.classList.remove("revealed");
+}
+
+function reveal() {
+  document.getElementById("word").classList.add("revealed");
 }
 
 // DRAW
@@ -104,40 +142,65 @@ function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// ACT WORDS
-const actWords = ["Monkey", "Teacher", "Cricketer", "Robot", "Singer", "Baby"];
-
-function newAct() {
-  let w = actWords[Math.floor(Math.random() * actWords.length)];
-  document.getElementById("actWord").innerText = w;
-}
-
-// RAPID FIRE
-const rapidQ = [
-  "Pizza or Burger?",
-  "Call or Text?",
-  "Morning or Night?",
-  "Tea or Coffee?",
-  "Beach or Mountains?"
+// RAPID (BIG SET)
+const rapid = [
+  "Pizza or Burger?","Call or Text?","Mountains or Beach?",
+  "Night or Morning?","Tea or Coffee?","Movies or Series?",
+  "Introvert or Extrovert?","Online or Offline?",
+  "Love or Money?","Travel or Stay home?",
+  "Music or Silence?","Sleep or Phone?"
 ];
 
 function newRapid() {
-  let q = rapidQ[Math.floor(Math.random() * rapidQ.length)];
+  let q = rapid[Math.floor(Math.random() * rapid.length)];
   document.getElementById("rapidQ").innerText = q;
 }
 
-// CHALLENGES
-const challenges = [
-  "Send your funniest photo right now",
-  "Say something in a weird accent",
-  "Show your room in 10 seconds",
-  "Tell a joke (bad one allowed)",
-  "Make a weird face for 5 seconds"
+// FUN TASKS
+const fun = [
+  "Act like me for 30 seconds",
+  "Say something in a funny accent",
+  "Show the weirdest thing near you",
+  "Tell a bad joke",
+  "Make a weird face for 5 seconds",
+  "Describe me in 3 funny words",
+  "Send your funniest photo",
+  "Imitate your teacher"
 ];
 
-function newChallenge() {
-  let c = challenges[Math.floor(Math.random() * challenges.length)];
-  document.getElementById("challengeText").innerText = c;
+function newFun() {
+  let q = fun[Math.floor(Math.random() * fun.length)];
+  document.getElementById("funQ").innerText = q;
+}
+
+// ROMANTIC
+const romantic = [
+  "What do you miss about me right now?",
+  "What’s your favorite memory of us?",
+  "What makes you feel loved?",
+  "What’s one thing you want to do together?",
+  "When do you feel closest to me?",
+  "What reminds you of me randomly?"
+];
+
+function newRomantic() {
+  let q = romantic[Math.floor(Math.random() * romantic.length)];
+  document.getElementById("romanticQ").innerText = q;
+}
+
+// DEEP
+const deep = [
+  "What do you need more from me?",
+  "What are you afraid to tell me?",
+  "What scares you about us?",
+  "Where do you see us going?",
+  "Have I ever hurt you unknowingly?",
+  "What does love mean to you now?"
+];
+
+function newDeep() {
+  let q = deep[Math.floor(Math.random() * deep.length)];
+  document.getElementById("deepQ").innerText = q;
 }
 
 </script>
