@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>US 💙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .level {
+      margin: 10px;
+    }
+
+    button {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: none;
+      margin: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .fun { background: #00adb5; }
+    .romantic { background: #ff7aa2; }
+    .intense { background: #ff5959; }
+
+    .card {
+      margin: 20px auto;
+      padding: 25px;
+      background: #0f3460;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 400px;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .score {
+      margin-top: 10px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .controls {
+      margin-top: 15px;
+    }
+
+    .truth { background: #4caf50; }
+    .dare { background: #f44336; }
+  </style>
+</head>
+
+<body>
+
+  <h1>💙 US 💙</h1>
+  <div>Pick a vibe</div>
+
+  <div class="level">
+    <button class="fun" onclick="setLevel('fun')">😄 Funny</button>
+    <button class="romantic" onclick="setLevel('romantic')">❤️ Romantic</button>
+    <button class="intense" onclick="setLevel('intense')">🔥 Intense</button>
+  </div>
+
+  <div class="card" id="card">Choose a vibe to start</div>
+
+  <div class="controls">
+    <button class="truth" onclick="getTruth()">Truth</button>
+    <button class="dare" onclick="getDare()">Dare</button>
+  </div>
+
+  <div class="score">
+    Score: <span id="score">0</span> ⭐
+  </div>
+
+<script>
+
+let currentLevel = "fun";
+let score = 0;
+
+const data = {
+  fun: {
+    truth: [
+      "What’s your funniest memory of me?",
+      "What weird habit of mine do you secretly like?",
+      "What meme describes us perfectly?",
+      "What’s something silly that reminds you of me?"
+    ],
+    dare: [
+      "Send me your funniest selfie right now",
+      "Talk in a baby voice for 30 seconds",
+      "Act like you’re proposing to me (dramatically)",
+      "Show me the weirdest thing in your room"
+    ]
+  },
+
+  romantic: {
+    truth: [
+      "When did you feel you were falling for me?",
+      "What do you miss about me right now?",
+      "What’s your favorite memory of us?",
+      "What makes you feel loved by me?"
+    ],
+    dare: [
+      "Send me a voice note saying ‘I love you’ in 3 styles",
+      "Describe our perfect date",
+      "Write a 2-line love message for me",
+      "Tell me one thing you want to do together soon"
+    ]
+  },
+
+  intense: {
+    truth: [
+      "What are you afraid to tell me?",
+      "Have I ever hurt you without knowing?",
+      "What do you need more from me?",
+      "Where do you see us going honestly?"
+    ],
+    dare: [
+      "Say something you’ve been holding back",
+      "Call me and just look at me for 1 minute (no talking)",
+      "Confess one deep thought about us",
+      "Tell me what scares you about losing me"
+    ]
+  }
+};
+
+function setLevel(level) {
+  currentLevel = level;
+  document.getElementById("card").innerText = "Now playing: " + level.toUpperCase();
+}
+
+function getTruth() {
+  let arr = data[currentLevel].truth;
+  let q = arr[Math.floor(Math.random() * arr.length)];
+  document.getElementById("card").innerText = q;
+  updateScore();
+}
+
+function getDare() {
+  let arr = data[currentLevel].dare;
+  let q = arr[Math.floor(Math.random() * arr.length)];
+  document.getElementById("card").innerText = q;
+  updateScore();
+}
+
+function updateScore() {
+  score++;
+  document.getElementById("score").innerText = score;
+}
+
+</script>
+
+</body>
+</html>
